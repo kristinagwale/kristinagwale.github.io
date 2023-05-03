@@ -13,11 +13,34 @@
 </head>
 <body>
 
-    <!-- create an SVG canvas for us to modify -->
-    <h1>Drake Songs Around the World</h1>
-    <div>
-        <svg id="geomap" width="3000" height="1100"> </svg>
+
+
+    <div id="geodiv">
+        <div id="divContainer">
+            <h1 id="header">Drake Songs Around the World</h1>
+            <svg id="geomap"> </svg>
+        </div>
     </div>
+
+    <div id="intro">
+        <h1> About the Artist</h1>
+        <p>
+            Drake, whose real name is Aubrey Drake Graham, is a Canadian rapper, singer,
+            songwriter, and actor. He has had a significant impact on the music industry, particularly
+            in the United States, since the release of his debut album "Thank Me Later" in 2010. Drake
+            has been extremely successful commercially, with numerous chart-topping hits and
+            best-selling albums. He has sold over 150 million records worldwide and is one of the
+            best-selling music artists of all time. In the United States, he has had 7 number-one albums
+            on the Billboard 200 chart and holds the record for the most top 10 hits on the Hot 100
+            chart, surpassing the Beatles. He has had a significant cultural impact on the United States.
+            He has helped to popularize the "Toronto sound," a fusion of hip-hop, R&B, and dancehall
+            music that originated in his hometown of Toronto, Canada. He has also been influential in
+            the development of the "emo-rap" genre, which blends hip-hop with elements of emo and
+            alternative rock music. In the data visualization shown below, we will look at his impact in
+            the US and the amount of people who listen to him.
+        </p>
+    </div>
+
     <div id="video-container"></div>
     <style>
         body {
@@ -33,6 +56,8 @@
             align-items: center;
             margin: 50px auto;
             max-width: 1000px;
+            border: 5px solid black;
+            background-color: lightblue;
         }
 
         iframe {
@@ -58,8 +83,8 @@
                 background-color: #555;
             }
     </style>
-    
-   
+
+
     <div id="video-container">
         <iframe src="https://www.youtube.com/embed/mym4sKoAnKs" frameborder="0" allowfullscreen></iframe>
         <iframe src="https://www.youtube.com/embed/m1a_GqJf02M" frameborder="0" allowfullscreen></iframe>
@@ -73,24 +98,24 @@
         <iframe src="https://www.youtube.com/embed/qfMVvLrMUK4" frameborder="0" allowfullscreen></iframe>
     </div>
 
-        <button id="scroll-btn">Scroll Up</button>
+    <button id="scroll-btn">Scroll Up</button>
 
-        <script>
-            const scrollBtn = document.getElementById('scroll-btn');
-            const videoContainer = document.getElementById('video-container');
+    <script>
+        const scrollBtn = document.getElementById('scroll-btn');
+        const videoContainer = document.getElementById('video-container');
 
-            scrollBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > videoContainer.offsetTop) {
-                    scrollBtn.style.display = 'block';
-                } else {
-                    scrollBtn.style.display = 'none';
-                }
-            });
-        </script>
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > videoContainer.offsetTop) {
+                scrollBtn.style.display = 'block';
+            } else {
+                scrollBtn.style.display = 'none';
+            }
+        });
+    </script>
 
-    </body>
+</body>
 </html>
