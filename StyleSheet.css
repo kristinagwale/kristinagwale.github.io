@@ -1,0 +1,47 @@
+﻿body {
+}
+.country-circle {
+    display: block;
+}
+
+#geodiv {
+    width: 1200px;
+    height: 1100px;
+    margin: 5px;
+    background-color: lightblue;
+    outline: solid 2px black;
+    position: center;
+    margin-left: 150px;
+}
+
+#divContainer {
+    width: 1000px;
+    height: 1000px;
+    position: absolute;
+    justify-content: center;
+    margin-left: 120px;
+}
+#header {
+    background-color: lightblue;
+    font-size: 40px;
+    font-family: 'Century Gothic';
+    height: 30px;
+    text-align: center;
+}
+
+#geomap {
+    
+    width: 3000px; 
+    height: 4000px;
+}
+
+#intro {
+    width: 1200px;
+    height: 220px;
+    margin: 5px;
+    background-color: lightblue;
+    outline: solid 2px black;
+    position: center;
+    margin-left: 150px;
+    padding: 1px;
+}
