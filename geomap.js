@@ -12,7 +12,8 @@
         const topology = data[0];
         const world = data[1];
         const songs = data[2];
-        const svg = d3.select("#geomap").append("g").attr('transform', 'translate(50,50)');
+        const svg = d3.select("#geomap").append("g").attr('transform', 'translate(50,50)').attr("width", 3000)
+            .attr("height", 1100);;
         const topo = topojson.feature(topology, topology.objects.continent);
         var projection = d3.geoMercator().scale(120).translate([width / 2, height / 1.5]);
         var path = d3.geoPath(projection);
@@ -126,10 +127,14 @@
                 if (songsForCountry.length > 0) {
                     songList = "<ul>";
                     songsForCountry.forEach(song => {
-                        songList += "<li>" + song.Title + " - " + song.Streams + "</li>";
+                        songList += "<li>" + song.Title + " - " + song.Streams + "</li>" + " - Global Charts:" + song.Global + "</li>";
                     });
                     songList += "</ul>";
                 }
+
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
 
                 tooltip.style("opacity", 1)
                     .html(d.properties.name)
@@ -141,7 +146,7 @@
                     .attr("x", event.pageX + 5)
                     .attr("y", event.pageY - 40)
                     .attr("width", 200)
-                    .attr("height", 20 + songsForCountry.length * 20)
+                    .attr("height", 20 + songsForCountry.length * 80)
                     .attr("fill", "white")
                     .attr("stroke", "black")
                     .attr("stroke-width", "1px");
@@ -159,8 +164,12 @@
                     .attr("x", event.pageX + 10)
                     .attr("y", event.pageY - 15)
                     .attr("width", 180)
-                    .attr("height", songsForCountry.length * 20)
+                    .attr("height", songsForCountry.length * 80)
                     .html(songList);
+            })
+            .on("mousemove", function (event) {
+                tooltip.style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 28) + "px");
             })
             .on("mouseout", function (event, d) {
                 d3.select(this)
@@ -173,7 +182,7 @@
                 svg.selectAll(".song-list").remove();
             });
 
-        
+
 
         var tooltip = d3.select("body")
             .append("div")
