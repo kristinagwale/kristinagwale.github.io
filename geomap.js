@@ -12,10 +12,9 @@
         const topology = data[0];
         const world = data[1];
         const songs = data[2];
-        const svg = d3.select("#geomap").append("g").attr('transform', 'translate(50,50)').attr("width", 3000)
-            .attr("height", 1100);;
+        const svg = d3.select("#geomap").append("g").attr('transform', 'translate(50,50)')
         const topo = topojson.feature(topology, topology.objects.continent);
-        var projection = d3.geoMercator().scale(120).translate([width / 2, height / 1.5]);
+        var projection = d3.geoMercator().scale(145).translate([width / 2, height / 1.5]);
         var path = d3.geoPath(projection);
         country_dict = {
             "1": "Global",
@@ -120,7 +119,7 @@
             .attr("class", "country")
             .on("mouseover", function (event, d) {
                 d3.select(this)
-                    .attr("fill", "lightblue");
+                    .attr("fill", "lightgrey");
 
                 var songsForCountry = songs.filter(song => song.CountryCode === country_dict[d.id]);
                 var songList = "";
@@ -146,7 +145,7 @@
                     .attr("x", event.pageX + 5)
                     .attr("y", event.pageY - 40)
                     .attr("width", 200)
-                    .attr("height", 20 + songsForCountry.length * 80)
+                    .attr("height", 20 + songsForCountry.length * 60)
                     .attr("fill", "white")
                     .attr("stroke", "black")
                     .attr("stroke-width", "1px");
@@ -164,7 +163,7 @@
                     .attr("x", event.pageX + 10)
                     .attr("y", event.pageY - 15)
                     .attr("width", 180)
-                    .attr("height", songsForCountry.length * 80)
+                    .attr("height", songsForCountry.length * 60)
                     .html(songList);
             })
             .on("mousemove", function (event) {
@@ -181,13 +180,9 @@
                 svg.selectAll(".country-label").remove();
                 svg.selectAll(".song-list").remove();
             });
-
-
-
         var tooltip = d3.select("body")
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
     });
 })();
-
